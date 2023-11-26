@@ -2,39 +2,42 @@
 -- Link to Leetcode Problem : https://leetcode.com/problems/trips-and-users/
 -- dfaisal solution : https://www.dsfaisal.com/articles/sql/leetcode-sql-problem-solving#574-winning-candidate--medium---leetcode
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q1069 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
+CREATE TABLE IF NOT EXISTS Q1069.Sales(
+    sale_id INT PRIMARY KEY,
+    product_id INT,
+    year INT,
+    quantity INT,
+    price INT
 );
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
+CREATE TABLE IF NOT EXISTS Q1069.Product(
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR
 );
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
 ------------------------ TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
+INSERT INTO Q1069.Sales(sale_id, product_id, year, quantity, price)
+VALUES(1, 100, 2008, 10, 5000);
+INSERT INTO Q1069.Sales(sale_id, product_id, year, quantity, price)
+VALUES(2, 100, 2009, 12, 5000);
+INSERT INTO Q1069.Sales(sale_id, product_id, year, quantity, price)
+VALUES(7, 200, 2011, 15, 9000);
 ------------------------ TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+INSERT INTO Q1069.Product(product_id, product_name)
+VALUES(100, 'Nokia');
+INSERT INTO Q1069.Product(product_id, product_name)
+VALUES(200, 'Apple');
+INSERT INTO Q1069.Product(product_id, product_name)
+VALUES(300, 'Samsung');
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
+FROM Q1069.Sales;
 ---
 SELECT *
-FROM Q175.Address;
+FROM Q1069.Product;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------

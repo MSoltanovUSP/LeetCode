@@ -2,39 +2,44 @@
 -- Link to Leetcode Problem : https://leetcode.com/problems/trips-and-users/
 -- dfaisal solution : https://www.dsfaisal.com/articles/sql/leetcode-sql-problem-solving#574-winning-candidate--medium---leetcode
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q1075 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
+CREATE TABLE IF NOT EXISTS Q1075.Project(project_id INT, employee_id INT);
+CREATE TABLE IF NOT EXISTS Q1075.Employee(
+    employee_id INT PRIMARY KEY,
+    name VARCHAR,
+    experience_years INT
 );
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
-);
+-- DROP TABLE Q1075.Project
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
 ------------------------ TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
+INSERT INTO Q1075.Project(project_id, employee_id)
+VALUES(1, 1);
+INSERT INTO Q1075.Project(project_id, employee_id)
+VALUES(1, 2);
+INSERT INTO Q1075.Project(project_id, employee_id)
+VALUES(1, 3);
+INSERT INTO Q1075.Project(project_id, employee_id)
+VALUES(2, 1);
+INSERT INTO Q1075.Project(project_id, employee_id)
+VALUES(2, 4);
 ------------------------ TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+INSERT INTO Q1075.Employee(employee_id, name, experience_years)
+VALUES(1, 'Khaled', 3);
+INSERT INTO Q1075.Employee(employee_id, name, experience_years)
+VALUES(2, 'Ali', 2);
+INSERT INTO Q1075.Employee(employee_id, name, experience_years)
+VALUES(3, 'John', 1);
+INSERT INTO Q1075.Employee(employee_id, name, experience_years)
+VALUES(4, 'Doe', 2);
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
+FROM Q1075.Project;
 ---
 SELECT *
-FROM Q175.Address;
+FROM Q1075.Employee;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------

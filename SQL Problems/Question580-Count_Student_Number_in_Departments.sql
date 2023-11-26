@@ -2,48 +2,48 @@
 -- Link to Leetcode Problem : https://leetcode.com/problems/trips-and-users/
 -- dfaisal solution : https://www.dsfaisal.com/articles/sql/leetcode-sql-problem-solving#574-winning-candidate--medium---leetcode
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q580 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
+CREATE TABLE IF NOT EXISTS Q580.student(
+    student_id INT,
+    student_name VARCHAR,
+    gender VARCHAR,
+    dept_id INT
 );
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
-);
+CREATE TABLE IF NOT EXISTS Q580.department(dept_id INT, dept_name VARCHAR);
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
 ------------------------ TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
+INSERT INTO Q580.student(student_id, student_name, gender, dept_id)
+VALUES(1, 'Jack', 'M', 1);
+INSERT INTO Q580.student(student_id, student_name, gender, dept_id)
+VALUES(2, 'Jane', 'F', 1);
+INSERT INTO Q580.student(student_id, student_name, gender, dept_id)
+VALUES(3, 'Mark', 'M', 2);
 ------------------------ TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+INSERT INTO Q580.department(dept_id, dept_name)
+VALUES(1, 'Engineering');
+INSERT INTO Q580.department(dept_id, dept_name)
+VALUES(2, 'Science');
+INSERT INTO Q580.department(dept_id, dept_name)
+VALUES(3, 'Law');
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
+FROM Q580.student;
 ---
 SELECT *
-FROM Q175.Address;
+FROM Q580.department;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 -------------------------- Problem Desciption: ---------------------------
 '''
-Write a solution to report the first name, last name, city, and state of each person in the Person table. 
-If the address of a personId is not present in the Address table, report null instead.
+A university uses 2 data tables, student and department, to store data about its students and the departments associated with each major.
 
-Return the result table in any order.
+Write a query to print the respective department name and number of students majoring in each department for all departments in the department table (even ones with no current students).
+
+Sort your results by descending number of students; if two or more departments have the same number of students, then sort those departments alphabetically by department name.
 ''';
 ----------------------------- My Solution: ------------------------------
 # Write your MySQL query statement below

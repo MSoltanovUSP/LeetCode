@@ -2,39 +2,47 @@
 -- Link to Leetcode Problem : https://leetcode.com/problems/trips-and-users/
 -- dfaisal solution : https://www.dsfaisal.com/articles/sql/leetcode-sql-problem-solving#574-winning-candidate--medium---leetcode
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q615 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
+CREATE TABLE IF NOT EXISTS Q615.salary(
+    id INT PRIMARY KEY,
+    employee_id INT,
+    amount INT,
+    paydate DATE
 );
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
+CREATE TABLE IF NOT EXISTS Q615.employee(
+    employee INT PRIMARY KEY,
+    department_id INT
 );
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
 ------------------------ TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
+INSERT INTO Q615.salary(id, employee_id, amount, paydate)
+VALUES(1, 1, 9000, '2017-03-31');
+INSERT INTO Q615.salary(id, employee_id, amount, paydate)
+VALUES(2, 2, 6000, '2017-03-31');
+INSERT INTO Q615.salary(id, employee_id, amount, paydate)
+VALUES(3, 3, 10000, '2017-03-31');
+INSERT INTO Q615.salary(id, employee_id, amount, paydate)
+VALUES(4, 1, 7000, '2017-02-28');
+INSERT INTO Q615.salary(id, employee_id, amount, paydate)
+VALUES(5, 2, 6000, '2017-02-28');
+INSERT INTO Q615.salary(id, employee_id, amount, paydate)
+VALUES(6, 3, 8000, '2017-02-28');
 ------------------------ TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+INSERT INTO Q615.employee(employee, department_id)
+VALUES(1, 1);
+INSERT INTO Q615.employee(employee, department_id)
+VALUES(2, 2);
+INSERT INTO Q615.employee(employee, department_id)
+VALUES(3, 2);
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
+FROM Q615.salary;
 ---
 SELECT *
-FROM Q175.Address;
+FROM Q615.employee;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------

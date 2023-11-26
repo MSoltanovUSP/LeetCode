@@ -2,48 +2,113 @@
 -- Link to Leetcode Problem : https://leetcode.com/problems/trips-and-users/
 -- dfaisal solution : https://www.dsfaisal.com/articles/sql/leetcode-sql-problem-solving#574-winning-candidate--medium---leetcode
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE TYPE action_enum AS ENUM ('show', 'answer', 'skip');
+CREATE SCHEMA Q578 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
+CREATE TABLE IF NOT EXISTS Q578.survey_log(
+    uid INT,
+    action action_enum,
+    question_id INT,
+    answer_id INT,
+    q_num INT,
+    timestamp INT,
+    CONSTRAINT valid_answer_id_for_action CHECK (
+        (
+            action = 'answer'
+            AND answer_id IS NOT NULL
+        )
+        OR (
+            action IN ('show', 'skip')
+            AND answer_id IS NULL
+        )
+    )
 );
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
-);
+-- DROP TABLE Q578.survey_log
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
------------------------- TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
------------------------- TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+------------------------ TABLE : survey_log ------------------------
+INSERT INTO Q578.survey_log(
+        uid,
+        action,
+        question_id,
+        answer_id,
+        q_num,
+        timestamp
+    )
+VALUES(
+        5,
+        'show',
+        285,
+        null,
+        1,
+        123
+    );
+INSERT INTO Q578.survey_log(
+        uid,
+        action,
+        question_id,
+        answer_id,
+        q_num,
+        timestamp
+    )
+VALUES(
+        5,
+        'answer',
+        285,
+        124124,
+        1,
+        124
+    );
+INSERT INTO Q578.survey_log(
+        uid,
+        action,
+        question_id,
+        answer_id,
+        q_num,
+        timestamp
+    )
+VALUES(
+        5,
+        'show',
+        369,
+        null,
+        2,
+        125
+    );
+INSERT INTO Q578.survey_log(
+        uid,
+        action,
+        question_id,
+        answer_id,
+        q_num,
+        timestamp
+    )
+VALUES(
+        5,
+        'skip',
+        369,
+        null,
+        2,
+        126
+    );
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
----
-SELECT *
-FROM Q175.Address;
+FROM Q578.survey_log;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 -------------------------- Problem Desciption: ---------------------------
 '''
-Write a solution to report the first name, last name, city, and state of each person in the Person table. 
-If the address of a personId is not present in the Address table, report null instead.
+Get the highest answer rate question from a table survey_log with these columns: uid, action, question_id, answer_id, q_num, timestamp.
 
-Return the result table in any order.
+uid means user id; action has these kind of values: “show”, “answer”, “skip”; answer_id is not null when action column is “answer”, while is null for “show” and “skip”; q_num is the numeral order of the question in current session.
+
+Write a sql query to identify the question which has the highest answer rate.
+
+Explanation: question 285 has answer rate 1/1, while question 369 has 0/1 answer rate, so output 285.
+
+Note: The highest answer rate meaning is: answer number’s ratio in show number in the same question.
 ''';
 ----------------------------- My Solution: ------------------------------
 # Write your MySQL query statement below

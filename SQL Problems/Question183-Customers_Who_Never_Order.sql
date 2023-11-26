@@ -1,48 +1,40 @@
 -- Difficulty : Easy
 -- Link to Leetcode Problem : https://leetcode.com/problems/customers-who-never-order/
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=ddeiGdMWtbQ
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q183 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
-);
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
-);
+CREATE TABLE IF NOT EXISTS Q183.Customers(Id INT PRIMARY KEY, Name VARCHAR);
+CREATE TABLE IF NOT EXISTS Q183.Orders(Id INT PRIMARY KEY, CustomerId INT);
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
 ------------------------ TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
+INSERT INTO Q183.Customers(Id, Name)
+VALUES(1, 'Joe');
+INSERT INTO Q183.Customers(Id, Name)
+VALUES(2, 'Henry');
+INSERT INTO Q183.Customers(Id, Name)
+VALUES(3, 'Sam');
+INSERT INTO Q183.Customers(Id, Name)
+VALUES(4, 'Max');
 ------------------------ TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+INSERT INTO Q183.Orders(Id, CustomerId)
+VALUES(1, 3);
+INSERT INTO Q183.Orders(Id, CustomerId)
+VALUES(2, 1);
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
+FROM Q183.Customers;
 ---
 SELECT *
-FROM Q175.Address;
+FROM Q183.Orders;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 -------------------------- Problem Desciption: ---------------------------
 '''
-Write a solution to report the first name, last name, city, and state of each person in the Person table. 
-If the address of a personId is not present in the Address table, report null instead.
-
-Return the result table in any order.
+Suppose that a website contains two tables, the Customers table and the Orders table. 
+Write a SQL query to find all customers who never order anything.
 ''';
 ----------------------------- My Solution: ------------------------------
 # Write your MySQL query statement below

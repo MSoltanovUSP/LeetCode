@@ -2,48 +2,38 @@
 -- Link to Leetcode Problem : https://leetcode.com/problems/trips-and-users/
 -- dfaisal solution : https://www.dsfaisal.com/articles/sql/leetcode-sql-problem-solving#574-winning-candidate--medium---leetcode
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q584 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
-);
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
+CREATE TABLE IF NOT EXISTS Q584.customer(
+    id INT PRIMARY KEY,
+    name VARCHAR,
+    referee_id INT
 );
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
 ------------------------ TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
------------------------- TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+INSERT INTO Q584.customer(id, name, referee_id)
+VALUES(1, 'Will', NULL);
+INSERT INTO Q584.customer(id, name, referee_id)
+VALUES(2, 'Jane', NULL);
+INSERT INTO Q584.customer(id, name, referee_id)
+VALUES(3, 'Alex', 2);
+INSERT INTO Q584.customer(id, name, referee_id)
+VALUES(4, 'Bill', NULL);
+INSERT INTO Q584.customer(id, name, referee_id)
+VALUES(5, 'Zack', 1);
+INSERT INTO Q584.customer(id, name, referee_id)
+VALUES(6, 'Mark', 2);
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
----
-SELECT *
-FROM Q175.Address;
+FROM Q584.customer;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 -------------------------- Problem Desciption: ---------------------------
 '''
-Write a solution to report the first name, last name, city, and state of each person in the Person table. 
-If the address of a personId is not present in the Address table, report null instead.
-
-Return the result table in any order.
+Write a query to return the list of customers NOT referred by the person with id "2".
 ''';
 ----------------------------- My Solution: ------------------------------
 # Write your MySQL query statement below

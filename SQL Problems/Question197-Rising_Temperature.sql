@@ -1,39 +1,28 @@
 -- Difficulty : Easy
 -- Link to Leetcode Problem : https://leetcode.com/problems/rising-temperature/
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q197 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
-);
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
+CREATE TABLE IF NOT EXISTS Q197.Weather(
+    Id INT PRIMARY KEY,
+    recordDate DATE,
+    temperature INT
 );
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
------------------------- TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
------------------------- TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+------------------------ TABLE : Weather ------------------------
+INSERT INTO Q197.Weather(Id, recordDate, temperature)
+VALUES(1, '2015-01-01', 10);
+INSERT INTO Q197.Weather(Id, recordDate, temperature)
+VALUES(2, '2015-01-02', 25);
+INSERT INTO Q197.Weather(Id, recordDate, temperature)
+VALUES(3, '2015-01-03', 20);
+INSERT INTO Q197.Weather(Id, recordDate, temperature)
+VALUES(4, '2015-01-04', 30);
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
----
-SELECT *
-FROM Q175.Address;
+FROM Q197.Weather;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
@@ -48,3 +37,7 @@ Return the result table in any order.
 # Write your MySQL query statement below
 ----------------------------- EverydayDataScience Solution: -------------
 # Write your MySQL query statement below
+SELECT t.Id
+FROM Q197.Weather AS t
+    JOIN Q197.Weather AS y ON t.RecordDate = y.RecordDate + INTERVAL '1 day'
+WHERE t.temperature > y.temperature;

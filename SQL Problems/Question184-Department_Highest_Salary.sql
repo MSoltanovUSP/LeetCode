@@ -1,48 +1,47 @@
 -- Difficulty : Easy
 -- Link to Leetcode Problem : https://leetcode.com/problems/department-highest-salary/
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=68PVQ4OzLuk
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q184 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
+CREATE TABLE IF NOT EXISTS Q184.Employee(
+    Id INT PRIMARY KEY,
+    Name VARCHAR,
+    Salary INT,
+    DepartmentId INT
 );
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
-);
+CREATE TABLE IF NOT EXISTS Q184.Department(Id INT PRIMARY KEY, Name VARCHAR);
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
------------------------- TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
------------------------- TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+------------------------ TABLE : Employee ------------------------
+INSERT INTO Q184.Employee(Id, Name, Salary, DepartmentId)
+VALUES(1, 'Joe', 70000, 1);
+INSERT INTO Q184.Employee(Id, Name, Salary, DepartmentId)
+VALUES(2, 'Jim', 90000, 1);
+INSERT INTO Q184.Employee(Id, Name, Salary, DepartmentId)
+VALUES(3, 'Henry', 80000, 2);
+INSERT INTO Q184.Employee(Id, Name, Salary, DepartmentId)
+VALUES(4, 'Sam', 60000, 2);
+INSERT INTO Q184.Employee(Id, Name, Salary, DepartmentId)
+VALUES(5, 'Max', 90000, 1);
+------------------------ TABLE : Department ------------------------
+INSERT INTO Q184.Department(Id, Name)
+VALUES(1, 'IT');
+INSERT INTO Q184.Department(Id, Name)
+VALUES(2, 'Sales');
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
+FROM Q184.Employee;
 ---
 SELECT *
-FROM Q175.Address;
+FROM Q184.Department;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 -------------------------- Problem Desciption: ---------------------------
 '''
-Write a solution to report the first name, last name, city, and state of each person in the Person table. 
-If the address of a personId is not present in the Address table, report null instead.
-
-Return the result table in any order.
+Write a SQL query to find employees who have the highest salary in each of the departments. 
+For the above tables, your SQL query should return the following rows (order of rows does not matter).
 ''';
 ----------------------------- My Solution: ------------------------------
 # Write your MySQL query statement below

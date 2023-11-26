@@ -2,48 +2,44 @@
 -- Link to Leetcode Problem : https://leetcode.com/problems/trips-and-users/
 -- dfaisal solution : https://www.dsfaisal.com/articles/sql/leetcode-sql-problem-solving#574-winning-candidate--medium---leetcode
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q579 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
-);
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
-);
+CREATE TABLE IF NOT EXISTS Q579.Employee(Id INT, Month INT, Salary INT);
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
------------------------- TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
------------------------- TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+------------------------ TABLE : Employee ------------------------
+INSERT INTO Q579.Employee(Id, Month, Salary)
+VALUES(1, 1, 20);
+INSERT INTO Q579.Employee(Id, Month, Salary)
+VALUES(2, 1, 20);
+INSERT INTO Q579.Employee(Id, Month, Salary)
+VALUES(1, 2, 30);
+INSERT INTO Q579.Employee(Id, Month, Salary)
+VALUES(2, 2, 30);
+INSERT INTO Q579.Employee(Id, Month, Salary)
+VALUES(3, 2, 40);
+INSERT INTO Q579.Employee(Id, Month, Salary)
+VALUES(1, 3, 40);
+INSERT INTO Q579.Employee(Id, Month, Salary)
+VALUES(3, 3, 60);
+INSERT INTO Q579.Employee(Id, Month, Salary)
+VALUES(1, 4, 60);
+INSERT INTO Q579.Employee(Id, Month, Salary)
+VALUES(3, 4, 70);
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
----
-SELECT *
-FROM Q175.Address;
+FROM Q579.Employee;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 -------------------------- Problem Desciption: ---------------------------
 '''
-Write a solution to report the first name, last name, city, and state of each person in the Person table. 
-If the address of a personId is not present in the Address table, report null instead.
+The Employee table holds the salary information in a year.
 
-Return the result table in any order.
+Write a SQL to get the cumulative sum of an employee’s salary over a period of 3 months but exclude the most recent month.
+
+The result should be displayed by ‘Id’ ascending, and then by ‘Month’ descending.
 ''';
 ----------------------------- My Solution: ------------------------------
 # Write your MySQL query statement below

@@ -7,16 +7,6 @@
         {
             "previewLimit": 50,
             "server": "localhost",
-            "port": 5431,
-            "driver": "PostgreSQL",
-            "name": "test",
-            "database": "leetcodedb",
-            "username": "username",
-            "password": "leetcode23"
-        },
-        {
-            "previewLimit": 50,
-            "server": "localhost",
             "port": 5433,
             "driver": "PostgreSQL",
             "name": "test2",

@@ -2,39 +2,51 @@
 -- Link to Leetcode Problem : https://leetcode.com/problems/trips-and-users/
 -- dfaisal solution : https://www.dsfaisal.com/articles/sql/leetcode-sql-problem-solving#574-winning-candidate--medium---leetcode
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q620 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
-);
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
+CREATE TABLE IF NOT EXISTS Q620.cinema(
+    id INT PRIMARY KEY,
+    movie VARCHAR,
+    description VARCHAR,
+    rating DECIMAL
 );
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
 ------------------------ TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
------------------------- TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+INSERT INTO Q620.cinema(id, movie, description, rating)
+VALUES(
+        1,
+        'War',
+        'great 3D',
+        8.9
+    );
+INSERT INTO Q620.cinema(id, movie, description, rating)
+VALUES(
+        2,
+        'Science',
+        'fiction',
+        8.5
+    );
+INSERT INTO Q620.cinema(id, movie, description, rating)
+VALUES(
+        3,
+        'irish',
+        'boring',
+        6.2
+    );
+INSERT INTO Q620.cinema(id, movie, description, rating)
+VALUES(
+        4,
+        'Ice song',
+        'Fantacy',
+        8.6
+    );
+INSERT INTO Q620.cinema(id, movie, description, rating)
+VALUES(5, 'House card', 'Interesting', 9.1);
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
----
-SELECT *
-FROM Q175.Address;
+FROM Q620.cinema;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------

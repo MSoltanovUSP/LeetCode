@@ -2,48 +2,39 @@
 -- Link to Leetcode Problem : https://leetcode.com/problems/trips-and-users/
 -- dfaisal solution : https://www.dsfaisal.com/articles/sql/leetcode-sql-problem-solving#574-winning-candidate--medium---leetcode
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q570 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
-);
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
+CREATE TABLE IF NOT EXISTS Q570.Employee(
+    Id INT PRIMARY KEY,
+    Name VARCHAR,
+    Department VARCHAR,
+    ManagerId INT
 );
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
 ------------------------ TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
------------------------- TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+INSERT INTO Q570.Employee(Id, Name, Department, ManagerId)
+VALUES(101, 'John', 'A', null);
+INSERT INTO Q570.Employee(Id, Name, Department, ManagerId)
+VALUES(102, 'Dan', 'A', 101);
+INSERT INTO Q570.Employee(Id, Name, Department, ManagerId)
+VALUES(103, 'James', 'A', 101);
+INSERT INTO Q570.Employee(Id, Name, Department, ManagerId)
+VALUES(104, 'Amy', 'A', 101);
+INSERT INTO Q570.Employee(Id, Name, Department, ManagerId)
+VALUES(105, 'Anne', 'A', 101);
+INSERT INTO Q570.Employee(Id, Name, Department, ManagerId)
+VALUES(106, 'Ron', 'B', 101);
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
----
-SELECT *
-FROM Q175.Address;
+FROM Q570.Employee;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 -------------------------- Problem Desciption: ---------------------------
 '''
-Write a solution to report the first name, last name, city, and state of each person in the Person table. 
-If the address of a personId is not present in the Address table, report null instead.
-
-Return the result table in any order.
+Write a SQL query that finds out managers with at least 5 direct report. 
 ''';
 ----------------------------- My Solution: ------------------------------
 # Write your MySQL query statement below

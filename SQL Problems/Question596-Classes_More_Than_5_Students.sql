@@ -2,39 +2,34 @@
 -- Link to Leetcode Problem : https://leetcode.com/problems/trips-and-users/
 -- dfaisal solution : https://www.dsfaisal.com/articles/sql/leetcode-sql-problem-solving#574-winning-candidate--medium---leetcode
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q596 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
-);
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
-);
+CREATE TABLE IF NOT EXISTS Q596.courses(student VARCHAR, class VARCHAR);
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
 ------------------------ TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
------------------------- TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+INSERT INTO Q596.courses(student, class)
+VALUES('A', 'Math');
+INSERT INTO Q596.courses(student, class)
+VALUES('B', 'English');
+INSERT INTO Q596.courses(student, class)
+VALUES('C', 'Math');
+INSERT INTO Q596.courses(student, class)
+VALUES('D', 'Biology');
+INSERT INTO Q596.courses(student, class)
+VALUES('E', 'Math');
+INSERT INTO Q596.courses(student, class)
+VALUES('F', 'Computer');
+INSERT INTO Q596.courses(student, class)
+VALUES('G', 'Math');
+INSERT INTO Q596.courses(student, class)
+VALUES('H', 'Math');
+INSERT INTO Q596.courses(student, class)
+VALUES('I', 'Math');
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
----
-SELECT *
-FROM Q175.Address;
+FROM Q596.courses;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------

@@ -2,48 +2,44 @@
 -- Link to Leetcode Problem : https://leetcode.com/problems/trips-and-users/
 -- dfaisal solution : https://www.dsfaisal.com/articles/sql/leetcode-sql-problem-solving#574-winning-candidate--medium---leetcode
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q577 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
+CREATE TABLE IF NOT EXISTS Q577.Employee(
+    empId INT PRIMARY KEY,
+    name VARCHAR,
+    supervisor VARCHAR,
+    salary INT
 );
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
-);
+CREATE TABLE IF NOT EXISTS Q577.Bonus(empId INT, bonus INT);
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
------------------------- TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
------------------------- TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+------------------------ TABLE : Employee ------------------------
+INSERT INTO Q577.Employee(empId, name, supervisor, salary)
+VALUES(1, 'John', 3, 1000);
+INSERT INTO Q577.Employee(empId, name, supervisor, salary)
+VALUES(2, 'Dan', 3, 2000);
+INSERT INTO Q577.Employee(empId, name, supervisor, salary)
+VALUES(3, 'Brad', null, 4000);
+INSERT INTO Q577.Employee(empId, name, supervisor, salary)
+VALUES(4, 'Thomas', 3, 4000);
+------------------------ TABLE : Bonus ------------------------
+INSERT INTO Q577.Bonus(empId, bonus)
+VALUES(2, 500);
+INSERT INTO Q577.Bonus(empId, bonus)
+VALUES(4, 2000);
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
+FROM Q577.Employee;
 ---
 SELECT *
-FROM Q175.Address;
+FROM Q577.Bonus;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 -------------------------- Problem Desciption: ---------------------------
 '''
-Write a solution to report the first name, last name, city, and state of each person in the Person table. 
-If the address of a personId is not present in the Address table, report null instead.
-
-Return the result table in any order.
+Select all employee’s name and bonus whose bonus is < 1000.
 ''';
 ----------------------------- My Solution: ------------------------------
 # Write your MySQL query statement below

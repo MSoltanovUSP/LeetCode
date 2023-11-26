@@ -1,48 +1,32 @@
 -- Difficulty : Easy
 -- Link to Leetcode Problem : https://leetcode.com/problems/delete-duplicate-emails/
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=PLg7lF-BW5g
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q196 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
-);
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
-);
+CREATE TABLE IF NOT EXISTS Q196.Person(Id INT PRIMARY KEY, Email VARCHAR);
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
 ------------------------ TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
------------------------- TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+INSERT INTO Q196.Person(Id, Email)
+VALUES(1, 'john@example.com');
+INSERT INTO Q196.Person(Id, Email)
+VALUES(2, 'bob@example.com');
+INSERT INTO Q196.Person(Id, Email)
+VALUES(3, 'john@example.com');
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
----
-SELECT *
-FROM Q175.Address;
+FROM Q196.Person;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 -------------------------- Problem Desciption: ---------------------------
 '''
-Write a solution to report the first name, last name, city, and state of each person in the Person table. 
-If the address of a personId is not present in the Address table, report null instead.
+Write a SQL query to delete all duplicate email entries in a table named Person, 
+keeping only unique emails based on its smallest Id.
 
-Return the result table in any order.
+Note:
+Your output is the whole Person table after executing your sql. Use delete statement.
 ''';
 ----------------------------- My Solution: ------------------------------
 # Write your MySQL query statement below

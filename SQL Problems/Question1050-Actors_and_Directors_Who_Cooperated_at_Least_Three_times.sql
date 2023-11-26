@@ -2,39 +2,34 @@
 -- Link to Leetcode Problem : https://leetcode.com/problems/trips-and-users/
 -- dfaisal solution : https://www.dsfaisal.com/articles/sql/leetcode-sql-problem-solving#574-winning-candidate--medium---leetcode
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q1050 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
-);
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
+CREATE TABLE IF NOT EXISTS Q1050.ActorDirector(
+    actor_id INT,
+    director_id INT,
+    timestamp INT PRIMARY KEY
 );
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
 ------------------------ TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
------------------------- TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+INSERT INTO Q1050.ActorDirector(actor_id, director_id, timestamp)
+VALUES(1, 1, 0);
+INSERT INTO Q1050.ActorDirector(actor_id, director_id, timestamp)
+VALUES(1, 1, 1);
+INSERT INTO Q1050.ActorDirector(actor_id, director_id, timestamp)
+VALUES(1, 1, 2);
+INSERT INTO Q1050.ActorDirector(actor_id, director_id, timestamp)
+VALUES(1, 2, 3);
+INSERT INTO Q1050.ActorDirector(actor_id, director_id, timestamp)
+VALUES(1, 2, 4);
+INSERT INTO Q1050.ActorDirector(actor_id, director_id, timestamp)
+VALUES(2, 1, 5);
+INSERT INTO Q1050.ActorDirector(actor_id, director_id, timestamp)
+VALUES(2, 1, 6);
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
----
-SELECT *
-FROM Q175.Address;
+FROM Q1050.ActorDirector;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
