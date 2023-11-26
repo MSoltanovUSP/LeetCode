@@ -2,39 +2,134 @@
 -- Link to Leetcode Problem : https://leetcode.com/problems/trips-and-users/
 -- dfaisal solution : https://www.dsfaisal.com/articles/sql/leetcode-sql-problem-solving#574-winning-candidate--medium---leetcode
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q175 AUTHORIZATION username;
--- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
+CREATE SCHEMA Q1132 AUTHORIZATION username;
+CREATE TYPE action_enum_2 AS ENUM(
+    'view',
+    'like',
+    'reaction',
+    'comment',
+    'report',
+    'share'
 );
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
+-- Creating Tables for Question:
+CREATE TABLE IF NOT EXISTS Q1132.Actions(
+    user_id INT,
+    post_id INT,
+    action_date DATE,
+    action action_enum_2,
+    extra VARCHAR
 );
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
 ------------------------ TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
------------------------- TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+INSERT INTO Q1132.Actions(user_id, post_id, action_date, action, extra)
+VALUES(
+        1,
+        1,
+        '2019-07-01',
+        'view',
+        null
+    );
+INSERT INTO Q1132.Actions(user_id, post_id, action_date, action, extra)
+VALUES(
+        1,
+        1,
+        '2019-07-01',
+        'like',
+        null
+    );
+INSERT INTO Q1132.Actions(user_id, post_id, action_date, action, extra)
+VALUES(
+        1,
+        1,
+        '2019-07-01',
+        'share',
+        null
+    );
+INSERT INTO Q1132.Actions(user_id, post_id, action_date, action, extra)
+VALUES(
+        2,
+        4,
+        '2019-07-04',
+        'view',
+        null
+    );
+INSERT INTO Q1132.Actions(user_id, post_id, action_date, action, extra)
+VALUES(
+        2,
+        4,
+        '2019-07-04',
+        'report',
+        'spam'
+    );
+INSERT INTO Q1132.Actions(user_id, post_id, action_date, action, extra)
+VALUES(
+        3,
+        4,
+        '2019-07-04',
+        'view',
+        null
+    );
+INSERT INTO Q1132.Actions(user_id, post_id, action_date, action, extra)
+VALUES(
+        3,
+        4,
+        '2019-07-04',
+        'report',
+        'spam'
+    );
+INSERT INTO Q1132.Actions(user_id, post_id, action_date, action, extra)
+VALUES(
+        4,
+        3,
+        '2019-07-02',
+        'view',
+        null
+    );
+INSERT INTO Q1132.Actions(user_id, post_id, action_date, action, extra)
+VALUES(
+        4,
+        3,
+        '2019-07-02',
+        'report',
+        'spam'
+    );
+INSERT INTO Q1132.Actions(user_id, post_id, action_date, action, extra)
+VALUES(
+        5,
+        2,
+        '2019-07-04',
+        'view',
+        null
+    );
+INSERT INTO Q1132.Actions(user_id, post_id, action_date, action, extra)
+VALUES(
+        5,
+        2,
+        '2019-07-04',
+        'report',
+        'racism'
+    );
+INSERT INTO Q1132.Actions(user_id, post_id, action_date, action, extra)
+VALUES(
+        5,
+        5,
+        '2019-07-04',
+        'view',
+        null
+    );
+INSERT INTO Q1132.Actions(user_id, post_id, action_date, action, extra)
+VALUES(
+        5,
+        5,
+        '2019-07-04',
+        'report',
+        'racism'
+    );
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
----
-SELECT *
-FROM Q175.Address;
+FROM Q1132.Actions;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------

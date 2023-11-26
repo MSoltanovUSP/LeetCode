@@ -2,39 +2,159 @@
 -- Link to Leetcode Problem : https://leetcode.com/problems/trips-and-users/
 -- dfaisal solution : https://www.dsfaisal.com/articles/sql/leetcode-sql-problem-solving#574-winning-candidate--medium---leetcode
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q1141 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
+CREATE TYPE activity_type_enum as ENUM(
+    'open_session',
+    'end_session',
+    'scroll_down',
+    'send_message'
 );
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
+CREATE TABLE IF NOT EXISTS Q1141.Activity(
+    user_id INT,
+    session_id INT,
+    activity_date DATE,
+    activity_type activity_type_enum
 );
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
 ------------------------ TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
------------------------- TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+INSERT INTO Q1141.Activity(
+        user_id,
+        session_id,
+        activity_date,
+        activity_type
+    )
+VALUES(
+        1,
+        1,
+        '2019-07-20',
+        'open_session'
+    );
+INSERT INTO Q1141.Activity(
+        user_id,
+        session_id,
+        activity_date,
+        activity_type
+    )
+VALUES(
+        1,
+        1,
+        '2019-07-20',
+        'scroll_down'
+    );
+INSERT INTO Q1141.Activity(
+        user_id,
+        session_id,
+        activity_date,
+        activity_type
+    )
+VALUES(
+        1,
+        1,
+        '2019-07-20',
+        'end_session'
+    );
+INSERT INTO Q1141.Activity(
+        user_id,
+        session_id,
+        activity_date,
+        activity_type
+    )
+VALUES(
+        2,
+        4,
+        '2019-07-20',
+        'open_session'
+    );
+INSERT INTO Q1141.Activity(
+        user_id,
+        session_id,
+        activity_date,
+        activity_type
+    )
+VALUES(
+        2,
+        4,
+        '2019-07-21',
+        'send_message'
+    );
+INSERT INTO Q1141.Activity(
+        user_id,
+        session_id,
+        activity_date,
+        activity_type
+    )
+VALUES(
+        2,
+        4,
+        '2019-07-21',
+        'end_session'
+    );
+INSERT INTO Q1141.Activity(
+        user_id,
+        session_id,
+        activity_date,
+        activity_type
+    )
+VALUES(
+        3,
+        2,
+        '2019-07-21',
+        'open_session'
+    );
+INSERT INTO Q1141.Activity(
+        user_id,
+        session_id,
+        activity_date,
+        activity_type
+    )
+VALUES(
+        3,
+        2,
+        '2019-07-21',
+        'send_message'
+    );
+INSERT INTO Q1141.Activity(
+        user_id,
+        session_id,
+        activity_date,
+        activity_type
+    )
+VALUES(
+        3,
+        2,
+        '2019-07-21',
+        'end_session'
+    );
+INSERT INTO Q1141.Activity(
+        user_id,
+        session_id,
+        activity_date,
+        activity_type
+    )
+VALUES(
+        4,
+        3,
+        '2019-06-25',
+        'open_session'
+    );
+INSERT INTO Q1141.Activity(
+        user_id,
+        session_id,
+        activity_date,
+        activity_type
+    )
+VALUES(
+        4,
+        3,
+        '2019-06-25',
+        'end_session'
+    );
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
----
-SELECT *
-FROM Q175.Address;
+FROM Q1141.Activity;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------

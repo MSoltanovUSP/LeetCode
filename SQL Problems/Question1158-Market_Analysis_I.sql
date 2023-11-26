@@ -2,39 +2,136 @@
 -- Link to Leetcode Problem : https://leetcode.com/problems/trips-and-users/
 -- dfaisal solution : https://www.dsfaisal.com/articles/sql/leetcode-sql-problem-solving#574-winning-candidate--medium---leetcode
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q1158 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
+CREATE TABLE IF NOT EXISTS Q1158.Users(
+    user_id INT,
+    join_date DATE,
+    favorite_brand VARCHAR
 );
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
+CREATE TABLE IF NOT EXISTS Q1158.Orders(
+    order_id INT,
+    order_date DATE,
+    item_id INT,
+    buyer_id INT,
+    seller_id INT
 );
+CREATE TABLE IF NOT EXISTS Q1158.Items(item_id INT, item_brand VARCHAR);
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
------------------------- TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
------------------------- TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+------------------------ TABLE : Users ------------------------
+INSERT INTO Q1158.Users(user_id, join_date, favorite_brand)
+VALUES(1, '2018-01-01', 'Lenovo');
+INSERT INTO Q1158.Users(user_id, join_date, favorite_brand)
+VALUES(2, '2018-02-09', 'Samsung');
+INSERT INTO Q1158.Users(user_id, join_date, favorite_brand)
+VALUES(3, '2018-01-19', 'LG');
+INSERT INTO Q1158.Users(user_id, join_date, favorite_brand)
+VALUES(4, '2018-05-21', 'HP');
+------------------------ TABLE : Orders ------------------------
+INSERT INTO Q1158.Orders(
+        order_id,
+        order_date,
+        item_id,
+        buyer_id,
+        seller_id
+    )
+VALUES(
+        1,
+        '2019-08-01',
+        4,
+        1,
+        2
+    );
+INSERT INTO Q1158.Orders(
+        order_id,
+        order_date,
+        item_id,
+        buyer_id,
+        seller_id
+    )
+VALUES(
+        2,
+        '2018-08-02',
+        2,
+        1,
+        3
+    );
+INSERT INTO Q1158.Orders(
+        order_id,
+        order_date,
+        item_id,
+        buyer_id,
+        seller_id
+    )
+VALUES(
+        3,
+        '2019-08-03',
+        3,
+        2,
+        3
+    );
+INSERT INTO Q1158.Orders(
+        order_id,
+        order_date,
+        item_id,
+        buyer_id,
+        seller_id
+    )
+VALUES(
+        4,
+        '2018-08-04',
+        1,
+        4,
+        2
+    );
+INSERT INTO Q1158.Orders(
+        order_id,
+        order_date,
+        item_id,
+        buyer_id,
+        seller_id
+    )
+VALUES(
+        5,
+        '2018-08-04',
+        1,
+        3,
+        4
+    );
+INSERT INTO Q1158.Orders(
+        order_id,
+        order_date,
+        item_id,
+        buyer_id,
+        seller_id
+    )
+VALUES(
+        6,
+        '2019-08-05',
+        2,
+        2,
+        4
+    );
+------------------------ TABLE : Items ------------------------
+INSERT INTO Q1158.Items(item_id, item_brand)
+VALUES(1, 'Samsung');
+INSERT INTO Q1158.Items(item_id, item_brand)
+VALUES(2, 'Lenovo');
+INSERT INTO Q1158.Items(item_id, item_brand)
+VALUES(3, 'LG');
+INSERT INTO Q1158.Items(item_id, item_brand)
+VALUES(4, 'HP');
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
+FROM Q1158.Users;
 ---
 SELECT *
-FROM Q175.Address;
+FROM Q1158.Orders;
+---
+SELECT *
+FROM Q1158.Items;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------

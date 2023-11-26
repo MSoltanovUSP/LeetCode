@@ -2,39 +2,32 @@
 -- Link to Leetcode Problem : https://leetcode.com/problems/trips-and-users/
 -- dfaisal solution : https://www.dsfaisal.com/articles/sql/leetcode-sql-problem-solving#574-winning-candidate--medium---leetcode
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q1164 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
-);
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
+CREATE TABLE IF NOT EXISTS Q1164.Products(
+    product_id INT,
+    new_price INT,
+    change_date DATE
 );
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
 ------------------------ TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
------------------------- TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+INSERT INTO Q1164.Products(product_id, new_price, change_date)
+VALUES(1, 20, '2019-08-14');
+INSERT INTO Q1164.Products(product_id, new_price, change_date)
+VALUES(2, 50, '2019-08-14');
+INSERT INTO Q1164.Products(product_id, new_price, change_date)
+VALUES(1, 30, '2019-08-15');
+INSERT INTO Q1164.Products(product_id, new_price, change_date)
+VALUES(1, 35, '2019-08-16');
+INSERT INTO Q1164.Products(product_id, new_price, change_date)
+VALUES(2, 65, '2019-08-17');
+INSERT INTO Q1164.Products(product_id, new_price, change_date)
+VALUES(3, 20, '2019-08-18');
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
----
-SELECT *
-FROM Q175.Address;
+FROM Q1164.Products;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------

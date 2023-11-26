@@ -2,39 +2,70 @@
 -- Link to Leetcode Problem : https://leetcode.com/problems/trips-and-users/
 -- dfaisal solution : https://www.dsfaisal.com/articles/sql/leetcode-sql-problem-solving#574-winning-candidate--medium---leetcode
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q1148 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
-);
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
+CREATE TABLE IF NOT EXISTS Q1148.Views(
+    article_id INT,
+    author_id INT,
+    viewer_id INT,
+    view_date DATE
 );
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
 ------------------------ TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
------------------------- TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+INSERT INTO Q1148.Views(article_id, author_id, viewer_id, view_date)
+VALUES(
+        1,
+        3,
+        5,
+        '2019-08-01'
+    );
+INSERT INTO Q1148.Views(article_id, author_id, viewer_id, view_date)
+VALUES(
+        1,
+        3,
+        6,
+        '2019-08-02'
+    );
+INSERT INTO Q1148.Views(article_id, author_id, viewer_id, view_date)
+VALUES(
+        2,
+        7,
+        7,
+        '2019-08-01'
+    );
+INSERT INTO Q1148.Views(article_id, author_id, viewer_id, view_date)
+VALUES(
+        2,
+        7,
+        6,
+        '2019-08-02'
+    );
+INSERT INTO Q1148.Views(article_id, author_id, viewer_id, view_date)
+VALUES(
+        4,
+        7,
+        1,
+        '2019-07-22'
+    );
+INSERT INTO Q1148.Views(article_id, author_id, viewer_id, view_date)
+VALUES(
+        3,
+        4,
+        4,
+        '2019-07-21'
+    );
+INSERT INTO Q1148.Views(article_id, author_id, viewer_id, view_date)
+VALUES(
+        3,
+        4,
+        4,
+        '2019-07-21'
+    );
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
----
-SELECT *
-FROM Q175.Address;
+FROM Q1148.Views;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------

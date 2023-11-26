@@ -2,102 +2,93 @@
 -- Link to Leetcode Problem : https://leetcode.com/problems/trips-and-users/
 -- dfaisal solution : https://www.dsfaisal.com/articles/sql/leetcode-sql-problem-solving#574-winning-candidate--medium---leetcode
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q1084 AUTHORIZATION username;
+CREATE SCHEMA Q1174 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q1084.Product(
-    product_id INT PRIMARY KEY,
-    product_name VARCHAR,
-    unit_price INT
-);
-CREATE TABLE IF NOT EXISTS Q1084.Sales(
-    seller_id INT,
-    product_id INT,
-    buyer_id INT,
-    sale_date DATE,
-    quantity INT,
-    price INT
+CREATE TABLE IF NOT EXISTS Q1174.Delivery(
+    delivery_id INT,
+    customer_id INT,
+    order_date DATE,
+    customer_pref_delivery_date DATE
 );
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
 ------------------------ TABLE : Person ------------------------
-INSERT INTO Q1084.Product(product_id, product_name, unit_price)
-VALUES(1, 'S8', 1000);
-INSERT INTO Q1084.Product(product_id, product_name, unit_price)
-VALUES(2, 'G4', 800);
-INSERT INTO Q1084.Product(product_id, product_name, unit_price)
-VALUES(3, 'iPhone', 1400);
------------------------- TABLE : Address ------------------------
-INSERT INTO Q1084.Sales(
-        seller_id,
-        product_id,
-        buyer_id,
-        sale_date,
-        quantity,
-        price
+INSERT INTO Q1174.Delivery(
+        delivery_id,
+        customer_id,
+        order_date,
+        customer_pref_delivery_date
     )
 VALUES(
         1,
         1,
-        1,
-        '2019-01-21',
-        2,
-        2000
+        '2019-08-01',
+        '2019-08-02'
     );
-INSERT INTO Q1084.Sales(
-        seller_id,
-        product_id,
-        buyer_id,
-        sale_date,
-        quantity,
-        price
-    )
-VALUES(
-        1,
-        2,
-        2,
-        '2019-02-17',
-        1,
-        800
-    );
-INSERT INTO Q1084.Sales(
-        seller_id,
-        product_id,
-        buyer_id,
-        sale_date,
-        quantity,
-        price
+INSERT INTO Q1174.Delivery(
+        delivery_id,
+        customer_id,
+        order_date,
+        customer_pref_delivery_date
     )
 VALUES(
         2,
-        2,
-        3,
-        '2019-06-02',
-        1,
-        800
+        5,
+        '2019-08-02',
+        '2019-08-02'
     );
-INSERT INTO Q1084.Sales(
-        seller_id,
-        product_id,
-        buyer_id,
-        sale_date,
-        quantity,
-        price
+INSERT INTO Q1174.Delivery(
+        delivery_id,
+        customer_id,
+        order_date,
+        customer_pref_delivery_date
     )
 VALUES(
         3,
-        3,
+        1,
+        '2019-08-11',
+        '2019-08-11'
+    );
+INSERT INTO Q1174.Delivery(
+        delivery_id,
+        customer_id,
+        order_date,
+        customer_pref_delivery_date
+    )
+VALUES(
         4,
-        '2019-05-13',
+        3,
+        '2019-08-24',
+        '2019-08-26'
+    );
+INSERT INTO Q1174.Delivery(
+        delivery_id,
+        customer_id,
+        order_date,
+        customer_pref_delivery_date
+    )
+VALUES(
+        5,
+        4,
+        '2019-08-21',
+        '2019-08-22'
+    );
+INSERT INTO Q1174.Delivery(
+        delivery_id,
+        customer_id,
+        order_date,
+        customer_pref_delivery_date
+    )
+VALUES(
+        6,
         2,
-        2800
+        '2019-08-11',
+        '2019-08-13'
     );
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q1084.Product;
----
-SELECT *
-FROM Q1084.Sales;
+FROM Q1174.Delivery;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------

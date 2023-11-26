@@ -2,39 +2,93 @@
 -- Link to Leetcode Problem : https://leetcode.com/problems/trips-and-users/
 -- dfaisal solution : https://www.dsfaisal.com/articles/sql/leetcode-sql-problem-solving#574-winning-candidate--medium---leetcode
 -- EverydayDataScience Video Solution : https://www.youtube.com/watch?v=b3LphTjCZ8o
-CREATE SCHEMA Q175 AUTHORIZATION username;
+CREATE SCHEMA Q1173 AUTHORIZATION username;
 -- Creating Tables for Question:
-CREATE TABLE IF NOT EXISTS Q175.Person(
-    personId INT PRIMARY KEY,
-    lastName VARCHAR,
-    firstName VARCHAR
-);
-CREATE TABLE IF NOT EXISTS Q175.Address(
-    addressId INT PRIMARY KEY,
-    -- personId INT REFERENCES Q175.Person(personId),
-    personId INT,
-    city VARCHAR,
-    state VARCHAR
+CREATE TABLE IF NOT EXISTS Q1173.Delivery(
+    delivery_id INT,
+    customer_id INT,
+    order_date DATE,
+    customer_pref_delivery_date DATE
 );
 --------------------------------------------------------------------------
 ------------------------ Loading datas to tables: ------------------------
 ------------------------ TABLE : Person ------------------------
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(1, 'Wang', 'Allen');
-INSERT INTO Q175.Person(personId, lastName, firstName)
-VALUES(2, 'Alice', 'Bob');
------------------------- TABLE : Address ------------------------
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(1, 2, 'New York City', 'New York');
-INSERT INTO Q175.Address(addressId, personId, city, state)
-VALUES(2, 3, 'Leetcode', 'California');
+INSERT INTO Q1173.Delivery(
+        delivery_id,
+        customer_id,
+        order_date,
+        customer_pref_delivery_date
+    )
+VALUES(
+        1,
+        1,
+        '2019-08-01',
+        '2019-08-02'
+    );
+INSERT INTO Q1173.Delivery(
+        delivery_id,
+        customer_id,
+        order_date,
+        customer_pref_delivery_date
+    )
+VALUES(
+        2,
+        5,
+        '2019-08-02',
+        '2019-08-02'
+    );
+INSERT INTO Q1173.Delivery(
+        delivery_id,
+        customer_id,
+        order_date,
+        customer_pref_delivery_date
+    )
+VALUES(
+        3,
+        1,
+        '2019-08-11',
+        '2019-08-11'
+    );
+INSERT INTO Q1173.Delivery(
+        delivery_id,
+        customer_id,
+        order_date,
+        customer_pref_delivery_date
+    )
+VALUES(
+        4,
+        3,
+        '2019-08-24',
+        '2019-08-26'
+    );
+INSERT INTO Q1173.Delivery(
+        delivery_id,
+        customer_id,
+        order_date,
+        customer_pref_delivery_date
+    )
+VALUES(
+        5,
+        4,
+        '2019-08-21',
+        '2019-08-22'
+    );
+INSERT INTO Q1173.Delivery(
+        delivery_id,
+        customer_id,
+        order_date,
+        customer_pref_delivery_date
+    )
+VALUES(
+        6,
+        2,
+        '2019-08-11',
+        '2019-08-13'
+    );
 --------------------------------------------------------------------------
 ------------------------ CHECK TABLES ------------------------
 SELECT *
-FROM Q175.Person;
----
-SELECT *
-FROM Q175.Address;
+FROM Q1173.Delivery;
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
